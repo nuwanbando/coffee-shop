@@ -1,0 +1,21 @@
+.mid {
+    background-color: #01657d;
+    vertical-align: middle;
+    color: #FFF;
+
+}
+.mtop{
+    background-color: #01657d;
+    height: 25px;
+}
+
+.mbot{
+    background-color: #01657d;
+    height: 10px;
+
+
+}
+
+.topr {
+    height: 300px;
+}
