@@ -8,7 +8,7 @@ var users = {'nuwan': {'username': 'nuwan', 'password': 'nuwan123'},
     'srinath': {'username': 'srinath', 'password': 'srinath123'}};
 
 
-router.post('login', function (ctx) {
+router.post('api/login', function (ctx) {
     var username = request.getParameter('username');
     var password = request.getParameter('password');
     var user = users[username];
@@ -27,7 +27,7 @@ router.post('login', function (ctx) {
     log.info('hit login');
 });
 
-router.get('login/valid', function (ctx) {
+router.get('api/login/valid', function (ctx) {
     var user = session.get('user');
     if (user) {
         print({'username': user.username});
