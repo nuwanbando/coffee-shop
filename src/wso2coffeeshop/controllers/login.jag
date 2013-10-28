@@ -1,0 +1,43 @@
+<%
+var goose = require('/modules/goose.js').goose;
+var log = new Log();
+var router = new goose({CONTEXT: '/wso2coffeeshop/', CACHE: false});
+
+
+var users = {'nuwan': {'username': 'nuwan', 'password': 'nuwan123'},
+    'srinath': {'username': 'srinath', 'password': 'srinath123'}};
+
+
+router.post('login', function (ctx) {
+    var username = request.getParameter('username');
+    var password = request.getParameter('password');
+    var user = users[username];
+
+    if (user) {
+        if (user.password == password) {
+            session.put('user', user);
+            print({'username': username});
+        } else {
+            print({'error': 'incorrect username or password'});
+        }
+    } else {
+        print({'error': 'no such user'});
+    }
+
+    log.info('hit login');
+});
+
+router.get('login/valid', function (ctx) {
+    var user = session.get('user');
+    if (user) {
+        print({'username': user.username});
+    } else {
+        print({});
+    }
+});
+
+
+log.info('hit nothing');
+router.process(request);
+
+%>

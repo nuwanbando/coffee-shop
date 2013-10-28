@@ -1,0 +1,35 @@
+<%
+
+var goose = require('/modules/goose.js').goose;
+var log = new Log();
+var router = new goose({CONTEXT: '/wso2coffeeshop/', CACHE: false});
+var orderModule = require('/modules/orderquery.js').Order;
+
+router.post('orders/', function (ctx) {
+    var order = request.getParameter('order');
+    orderModule.addOrder(order);
+    log.info('hit orders');
+});
+
+router.get('orders/{orderId}', function (ctx) {
+    log.info(ctx.orderId);
+});
+//Attributes in the POST body data
+router.put('orders/{orderId}', function (ctx) {
+    log.info(ctx.orderId);
+});
+//Get files
+router.post('orders/{orderId}', function (ctx) {
+    log.info(ctx.orderId);
+});
+
+router.delete('orders/{orderId}r', function (ctx) {
+    log.info(ctx.orderId);
+});
+
+log.info('hit nothing');
+router.process(request);
+
+
+
+%>

@@ -5,6 +5,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
@@ -17,7 +19,7 @@
     <script src="js/index.js"></script>
 </head>
 <body>
-<p class="navbar-text pull-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+<p class="navbar-text pull-right" id="navbar"><a id="username" href="login.html" class="navbar-link">Sign In</a></p>
 
 <div class="row topr">
     <div class="col-md-4"></div>
@@ -27,7 +29,7 @@
 <div class="row mtop">
 </div>
 <div class="row mid">
-    <div class="col-md-2"><a href="#"><img style="padding-left: 20px" src="images/capachino.png"></a></div>
+    <div id="cappuccino" class="col-md-2"><img style="padding-left: 20px" src="images/capachino.png"></div>
     <div class="col-md-2"><a href="#"><img src="images/americano.png"></a></div>
     <div class="col-md-2"><a href="#"><img src="images/breve.png"></a></div>
     <div class="col-md-2"><a href="#"><img style="padding-left: 30px" src="images/espresso.png"></a></div>
