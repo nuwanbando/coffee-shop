@@ -1,16 +1,16 @@
 <%
-	var coffeeList = ["latte", "americano", "cappuccino", "macchiato", "mocha", "espresso"] 
-	
-	var data = new Array();
-	
-	for(var i =0;i<coffeeList.length;i++){
-		data[i] = new Object(); 
-		data[i].key = coffeeList[i]; 
+var coffeeList = ["latte", "americano", "cappuccino", "macchiato", "mocha", "espresso"];
 
-		data[i].values = new Array();
-		for(var j=0;j<365;j++){
-			data[i].values[j] = [j, Math.round(1000*Math.random())]; 
-		}
-	}
-    print(data);
+var data = new Array();
+
+for (var i = 0; i < coffeeList.length; i++) {
+    data[i] = new Object();
+    data[i].key = coffeeList[i];
+
+    data[i].values = new Array();
+    for (var j = 0; j < 365; j++) {
+        data[i].values[j] = [j, Math.round(1000 * Math.random())];
+    }
+}
+print(data);
 %>

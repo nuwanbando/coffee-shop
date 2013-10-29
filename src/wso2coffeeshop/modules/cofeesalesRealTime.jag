@@ -1,7 +1,7 @@
 <%
 	var currentdate = new Date();
 
-	var coffeeList = ["latte", "americano", "cappuccino", "macchiato", "mocha", "espresso"] 
+	var coffeeList = ["latte", "americano", "cappuccino", "macchiato", "mocha", "espresso"];
 	
 	var data = new Array();
 	var count = Math.round(10*Math.random());
