@@ -1,0 +1,99 @@
+<html>
+<body>
+<script src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.flot.min.js"></script>
+<script type="text/javascript" src="jquery.flot.time.min.js"></script>    
+<script type="text/javascript" src="jquery.flot.axislabels.js"></script>
+
+<style type="text/css">
+#flotcontainer {
+    width: 800px;
+    height: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+</style>
+
+
+<script>
+var data = [];
+var dataset;
+var totalPoints = 50;
+var updateInterval = 250;
+
+function initData() {
+    var paper = document.getElementById("tree");
+	var context = paper.getContext("2d");
+	context.fillStyle = "#0066CC";
+	//create rectangle
+	context.fillRect(10,10, 530, 700);
+	setInterval(redraw, 1000);
+}
+
+function drawCircle(context,x, y, color){
+	context.strokeStyle = color;
+	context.fillStyle = color;
+	context.beginPath();
+	context.arc(x,y,5,0,Math.PI*2,true);
+	context.closePath();
+	context.stroke();
+	context.fill();
+	
+}
+
+function drawBox(context,x, y, color){
+	context.strokeStyle = "#000000";
+	context.fillStyle = "#000000";
+	context.fillRect(x,y, 5, 5);
+}
+
+
+function updateData(list) {
+	var paper = document.getElementById("tree");
+	var context = paper.getContext("2d");
+
+	for (var i=0;i<list.length;i++){
+		var d = list[i];
+		var sid = d.LocationBySecond.sid;
+		if(sid == "13" || sid =="14" || sid =="97" || sid =="98" || 
+			sid =="47" || sid =="16" || sid =="49" || sid =="88" || sid =="19" || sid =="52"|| 
+			sid =="53" || sid =="54" || sid =="23" || sid =="24" || sid =="57" || sid =="58"|| sid =="59" || sid =="28"){
+			drawCircle(context, d.LocationBySecond.xMean/100, d.LocationBySecond.yMean/100 + 340, "#af897c");
+		}else if(sid =="61" || sid =="62" || sid =="99" || sid =="100" || sid =="63" || sid =="64"|| 
+			sid =="65" || sid =="66" || sid =="67" || sid =="68" || sid =="69" || sid =="38" || sid =="71" || sid =="40" || sid =="73" || sid =="74" || sid =="75" || sid =="44"){
+			drawCircle(context, d.LocationBySecond.xMean/100, d.LocationBySecond.yMean/100 + 340, "#80c275");
+		}else if(sid =="4" || sid =="8" || sid =="10" || sid =="12"){
+			//alert(d + " " + d.LocationBySecond.xMean + " "+ d.LocationBySecond.yMean);
+			drawCircle(context, d.LocationBySecond.xMean/100, d.LocationBySecond.yMean/100 + 340, "#000000");
+		}
+	}
+}
+
+ function redraw() {
+        $.get("http://localhost:9768/MessageBox/messageBox", function(input, status) {
+          if (input === "_NODATA_") { return; }
+          if (input === "_AUTH_FAILURE_") {
+              alert("Authentication Failure!");
+              window.location.href = "login.jag";
+          } else {
+              var data = JSON.parse(input);
+              updateData(data.events);
+              //$.plot($("#flotcontainer"), dataset, options)
+              //setTimeout(update, updateInterval);
+          }
+        });    
+    }
+
+
+
+$(document).ready(function () {
+    initData();
+});
+</script>
+<canvas id="tree" width="500" height="500">
+Please stop using IE8 and upgrade, already.
+</canvas>
+</body>
+
+</body>
+</html>
