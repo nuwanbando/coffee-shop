@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+#chart1, #chart2 {
+  height: 500px;
+}
+
+</style>
+<body class='with-3d-shadow with-transitions'>
+
+  <div>
+    <svg id="chart1"></svg>
+  </div>
+
+  <div>
+    <!--<svg id="chart2"></svg>-->
+  </div>
+
+<script src="../lib/nvd3/lib/d3.v3.js"></script>
+<script src="../lib/nvd3/nv.d3.js"></script>
+<script src="../lib/nvd3/src/utils.js"></script>
+<script src="../lib/nvd3/src/models/axis.js"></script>
+<script src="../lib/nvd3/src/tooltip.js"></script>
+<script src="../lib/nvd3/src/interactiveLayer.js"></script>
+<script src="../lib/nvd3/src/models/legend.js"></script>
+<script src="../lib/nvd3/src/models/axis.js"></script>
+<script src="../lib/nvd3/src/models/scatter.js"></script>
+<script src="../lib/nvd3/src/models/stackedArea.js"></script>
+<script src="../lib/nvd3/src/models/stackedAreaChart.js"></script>
+<script src="../lib/jquery.min.js"></script>
+<script>
+
+
+
+$.get("http://localhost:9763/wso2coffeeshop/modules/cofeesales.jag", function(input, status) {
+    if (input === "_NODATA_") { return; }
+	if (input === "_AUTH_FAILURE_") {
+		alert("Authentication Failure!");
+		window.location.href = "login.jag";
+	} else {
+		var data = JSON.parse(input);
+		draw(data);
+	}
+});
+
+
+
+function draw(data) {
+//an example of harmonizing colors between visualizations
+//observe that Consumer Discretionary and Consumer Staples have 
+//been flipped in the second chart
+var colors = d3.scale.category20();
+keyColor = function(d, i) {return colors(d.key)};
+
+var chart;
+nv.addGraph(function() {
+  chart = nv.models.stackedAreaChart()
+               // .width(600).height(500)
+                .useInteractiveGuideline(true)
+                .x(function(d) { return d[0] })
+                .y(function(d) { return d[1] })
+                .color(keyColor)
+                .transitionDuration(300);
+                //.clipEdge(true);
+
+// chart.stacked.scatter.clipVoronoi(false);
+
+  chart.xAxis
+      .tickFormat(function(d) { return d3.time.format('%x')(new Date(d)) });
+
+  chart.yAxis
+      .tickFormat(d3.format(',.2f'));
+
+  d3.select('#chart1')
+    .datum(data)
+    .transition().duration(0)
+    .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+  return chart;
+});
+}
+
+
+
+
+</script>
