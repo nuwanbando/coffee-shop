@@ -4,18 +4,19 @@
     color: #FFF;
 
 }
-.mtop{
+
+.mtop {
     background-color: #01657d;
     height: 25px;
 }
 
-.mbot{
+.mbot {
     background-color: #01657d;
     height: 10px;
 
-
 }
-.modal-body{
+
+.modal-body {
     background-color: #01657d;
 }
 
@@ -26,13 +27,14 @@
 .rwhite {
     color: #FFFFFF;
 }
-.paybtn{
+
+.paybtn {
     left: 100px;
     position: absolute;
     top: 90px;
 }
 
-.labelx{
+.labelx {
 
     color: #FFFFFF;
     display: inline;
@@ -49,6 +51,15 @@
 
 }
 
-.rx{
+.rx {
     border-top: 5px solid #FFFFFF;
+}
+
+.payment {
+    cursor: pointer;
+
+}
+
+.coffee {
+    cursor: pointer;
 }

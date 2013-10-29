@@ -22,23 +22,23 @@ var Order = Order || {};
         ],
         "DRINKS": [
             {
-                "name": "Espresso",
+                "name": "espresso",
                 "cost": "$5"
             },
             {
-                "name": "Percolator",
+                "name": "cappuccino",
                 "cost": "$4"
             },
             {
-                "name": "Colombian Coffee",
+                "name": "americana",
                 "cost": "$7"
             },
             {
-                "name": "Hawaiian Kona",
+                "name": "breve",
                 "cost": "$6"
             },
             {
-                "name": "COCO",
+                "name": "latte",
                 "cost": "$6"
             }
         ]

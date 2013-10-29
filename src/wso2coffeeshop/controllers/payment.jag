@@ -1,33 +1,54 @@
 <%
 
-include("../model/paymentQuery.jag");
-response.contentType = 'text/javascript';
-
-var verb = request.getMethod();
-var orderid = request.getParameter('orderid');
-var data = request.getContent();
-
+var paymentModule = require('/modules/paymentquery.js').Payment;
+var goose = require('/modules/goose.js').goose;
 var log = new Log();
-var uri = request.getRequestURI();
-var callPath=uri.replace("/coffeeshop/payments","");
-var uriMatcher = new URIMatcher(callPath);
+var router = new goose({CONTEXT: '/wso2coffeeshop/', CACHE: false});
 
-if(uriMatcher.match("/{orderid}/")) {	
-	orderid = uriMatcher.elements().orderid;
-}
-if(data != null) {
-	
-	if(data.id != null) {
-		orderid = parse(data).id;
-	}
-}
-if(verb == "GET" && orderid != null){
-	//is paid for order	
-	isPaid(orderid);
-	
-}else if (verb == "PUT" && orderid != null){	
-	pay(orderid);
-}
+
+router.post('api/payment/{orderId}', function (ctx) {
+    paymentModule.pay(ctx.orderId);
+    log.info(ctx.orderId);
+});
+
+
+
+
+
+
+log.info('hit nothing');
+router.process(request);
+
+
+
+// OLD
+/*
+ var verb = request.getMethod();
+ var orderid = request.getParameter('orderid');
+ var data = request.getContent();
+
+ var log = new Log();
+ var uri = request.getRequestURI();
+ var callPath=uri.replace("/coffeeshop/payments","");
+ var uriMatcher = new URIMatcher(callPath);
+
+ if(uriMatcher.match("/{orderid}/")) {
+ orderid = uriMatcher.elements().orderid;
+ }
+ if(data != null) {
+
+ if(data.id != null) {
+ orderid = parse(data).id;
+ }
+ }
+ if(verb == "GET" && orderid != null){
+ //is paid for order
+ isPaid(orderid);
+
+ }else if (verb == "PUT" && orderid != null){
+ pay(orderid);
+ }
+ */
 
 
 %>

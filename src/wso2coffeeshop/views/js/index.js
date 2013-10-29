@@ -1,7 +1,25 @@
 $(function () {
     //placing a Espresso order
     $('#cappuccino').click(function () {
-        $.post("/wso2coffeeshop/api/orders", { order: "Espresso"}, function (data) {
+        $.post("/wso2coffeeshop/api/orders", { order: "cappuccino"}, function (data) {
+            console.log(data);
+        });
+    });
+
+    $('#americana').click(function () {
+        $.post("/wso2coffeeshop/api/orders", { order: "americana"}, function (data) {
+            console.log(data);
+        });
+    });
+
+    $('#breve').click(function () {
+        $.post("/wso2coffeeshop/api/orders", { order: "breve"}, function (data) {
+            console.log(data);
+        });
+    });
+
+    $('#espresso').click(function () {
+        $.post("/wso2coffeeshop/api/orders", { order: "espresso"}, function (data) {
             console.log(data);
         });
     });
@@ -26,4 +44,25 @@ $(function () {
 
     });
 
+    $('.payment').on('click', function () {
+        var orderId = this.attr('id');
+        $.put('/wso2coffeeshop/api/payments/' + orderId, function (data) {
+            console.log(data);
+        });
+
+    });
+
+
 });
+
+var pay = function (orderId) {
+    $.ajax({
+        url: '/wso2coffeeshop/api/payment/' + orderId,
+        data: {'sss':'sss'},
+        dataType:'json',
+        type: 'POST',
+        success: function (data) {
+            $('#'+orderId).text('Payment Complete');
+        }
+    });
+}

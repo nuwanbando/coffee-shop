@@ -35,12 +35,12 @@ if (!user) {
 <div class="row mtop">
 </div>
 <div class="row mid">
-    <div id="cappuccino" class="col-md-2"><img style="padding-left: 20px" src="/wso2coffeeshop/views/images/capachino.png"><span class="badge">42</span></div>
-    <div class="col-md-2"><a href="#"><img src="/wso2coffeeshop/views/images/americano.png"></a><span class="badge">4</span></div>
-    <div class="col-md-2"><a href="#"><img src="/wso2coffeeshop/views/images/breve.png"></a><span class="badge">1</span></div>
-    <div class="col-md-2"><a href="#"><img style="padding-left: 30px" src="/wso2coffeeshop/views/images/espresso.png"></a><span class="badge">1</span></div>
-    <div class="col-md-2"><a href="#"><img src="/wso2coffeeshop/views/images/latte.png"></a><span class="badge">1</span></div>
-    <div class="col-md-2"><a href="#"><img src="/wso2coffeeshop/views/images/mocha.png"></a><span class="badge">2</span></div>
+    <div id="cappuccino" class="col-md-2 coffee"><img style="padding-left: 20px" src="/wso2coffeeshop/views/images/capachino.png"><span class="badge">42</span></div>
+    <div id="americana" class="col-md-2 coffee"><a href="#"><img src="/wso2coffeeshop/views/images/americano.png"></a><span class="badge">4</span></div>
+    <div id="breve" class="col-md-2 coffee"><a href="#"><img src="/wso2coffeeshop/views/images/breve.png"></a><span class="badge">1</span></div>
+    <div id="espresso" class="col-md-2 coffee"><a href="#"><img style="padding-left: 30px" src="/wso2coffeeshop/views/images/espresso.png"></a><span class="badge">1</span></div>
+    <div id="latte" class="col-md-2 coffee"><a href="#"><img src="/wso2coffeeshop/views/images/latte.png"></a><span class="badge">1</span></div>
+    <div id="mocha" class="col-md-2 coffee"><a href="#"><img src="/wso2coffeeshop/views/images/mocha.png"></a><span class="badge">2</span></div>
 </div>
 <div class="row mbot">
 </div>

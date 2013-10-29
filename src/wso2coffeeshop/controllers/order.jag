@@ -23,10 +23,29 @@ router.get('api/orders/list/html', function (ctx) {
 
     } else {
         for (var o = 0; o < user.orders.length; o++) {
-            html += '<div class="row"><div class="col-md-4">' +
-                    '<img style="padding-left: 20px" src="/wso2coffeeshop/views/images/capachino.png"></div>' +
-                    '<div class="col-md-4"><span class="label label-warning labelx">Make Payment</span></div>' +
-                    '<div class="col-md-4"></div></div>';
+
+            if (user.orders[o].DRINK == "cappuccino") {
+
+                html += '<div class="row"><div class="col-md-4">' +
+                        '<img style="padding-left: 20px" src="/wso2coffeeshop/views/images/capachino.png"></div>' +
+                        '<div class="col-md-4"><a href="javascript:pay(' + user.orders[o].ORDER_ID + ')"><span id="' + user.orders[o].ORDER_ID + '" class="label label-warning labelx payment">Make Payment</span></a></div>' +
+                        '<div class="col-md-4"></div></div>';
+            } else if (user.orders[o].DRINK == "espresso") {
+                html += '<div class="row"><div class="col-md-4">' +
+                        '<img style="padding-left: 20px" src="/wso2coffeeshop/views/images/espresso.png"></div>' +
+                        '<div class="col-md-4"><a href="javascript:pay(' + user.orders[o].ORDER_ID + ')"><span id="' + user.orders[o].ORDER_ID + '" class="label label-warning labelx payment">Make Payment</span></a></div>' +
+                        '<div class="col-md-4"></div></div>';
+            } else if (user.orders[o].DRINK == "americana") {
+                html += '<div class="row"><div class="col-md-4">' +
+                        '<img style="padding-left: 20px" src="/wso2coffeeshop/views/images/americano.png"></div>' +
+                        '<div class="col-md-4"><a href="javascript:pay(' + user.orders[o].ORDER_ID + ')"><span id="' + user.orders[o].ORDER_ID + '" class="label label-warning labelx payment">Make Payment</span></a></div>' +
+                        '<div class="col-md-4"></div></div>';
+            } else if (user.orders[o].DRINK == "breve") {
+                html += '<div class="row"><div class="col-md-4">' +
+                        '<img style="padding-left: 20px" src="/wso2coffeeshop/views/images/breve.png"></div>' +
+                        '<div class="col-md-4"><a href="javascript:pay(' + user.orders[o].ORDER_ID + ')"><span id="' + user.orders[o].ORDER_ID + '" class="label label-warning labelx payment">Make Payment</span></a></div>' +
+                        '<div class="col-md-4"></div></div>';
+            }
 
             if (o < user.orders.length - 1) {
                 html += '<div class ="rx"></div>';
@@ -45,7 +64,7 @@ router.post('api/orders/{orderId}', function (ctx) {
     log.info(ctx.orderId);
 });
 
-router.delete('api/orders/{orderId}r', function (ctx) {
+router.delete('api/orders/{orderId}', function (ctx) {
     log.info(ctx.orderId);
 });
 
