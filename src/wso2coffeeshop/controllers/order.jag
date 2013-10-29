@@ -14,6 +14,28 @@ router.post('api/orders/', function (ctx) {
 router.get('api/orders/{orderId}', function (ctx) {
     log.info(ctx.orderId);
 });
+
+router.get('api/orders/list/html', function (ctx) {
+    var html = "";
+    var user = session.get('user');
+    if (user.orders.length == 0) {
+        html += '<div class="row"><div class="col-md-12 rwhite"><b>You do not have any pending orders</b></div></div>';
+
+    } else {
+        for (var o = 0; o < user.orders.length; o++) {
+            html += '<div class="row"><div class="col-md-4">' +
+                    '<img style="padding-left: 20px" src="/wso2coffeeshop/views/images/capachino.png"></div>' +
+                    '<div class="col-md-4"><span class="label label-warning labelx">Make Payment</span></div>' +
+                    '<div class="col-md-4"></div></div>';
+
+            if (o < user.orders.length - 1) {
+                html += '<div class ="rx"></div>';
+            }
+        }
+    }
+    print(html);
+});
+
 //Attributes in the POST body data
 router.put('api/orders/{orderId}', function (ctx) {
     log.info(ctx.orderId);

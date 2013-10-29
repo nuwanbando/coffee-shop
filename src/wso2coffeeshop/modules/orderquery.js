@@ -85,6 +85,10 @@ var Order = Order || {};
                 "PAY": false
             };
             session.put("o" + orderIdx, object);
+
+            var user = session.get('user');
+            user.orders.push(object);
+
             //order is been taken
             var result = session.get("o" + orderIdx);
             print(result);

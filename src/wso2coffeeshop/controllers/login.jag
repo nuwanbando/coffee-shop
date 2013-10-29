@@ -4,8 +4,8 @@ var log = new Log();
 var router = new goose({CONTEXT: '/wso2coffeeshop/', CACHE: false});
 
 
-var users = {'nuwan': {'username': 'nuwan', 'password': 'nuwan123'},
-    'srinath': {'username': 'srinath', 'password': 'srinath123'}};
+var users = {'nuwan': {'username': 'nuwan', 'password': 'nuwan123', 'orders': []},
+    'srinath': {'username': 'srinath', 'password': 'srinath123', 'orders': []}};
 
 
 router.post('api/login', function (ctx) {

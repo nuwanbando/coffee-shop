@@ -15,7 +15,40 @@
 
 
 }
+.modal-body{
+    background-color: #01657d;
+}
 
 .topr {
     height: 300px;
+}
+
+.rwhite {
+    color: #FFFFFF;
+}
+.paybtn{
+    left: 100px;
+    position: absolute;
+    top: 90px;
+}
+
+.labelx{
+
+    color: #FFFFFF;
+    display: inline;
+    font-size: 90%;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.6em 3em;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+    left: 100px;
+    position: absolute;
+    top: 70px;
+
+}
+
+.rx{
+    border-top: 5px solid #FFFFFF;
 }
