@@ -1,0 +1,32 @@
+<%
+	var currentdate = new Date();
+
+	var coffeeList = ["latte", "americano", "cappuccino", "macchiato", "mocha", "espresso"] 
+	
+	var data = new Array();
+	var count = Math.round(10*Math.random());
+	
+	for(var i =0;i<count;i++){
+		data[i] = new Object(); 
+		data[i].price = 10*Math.random();
+		data[i].orderTime = data[i].price* Math.round(30*Math.random());
+		var chance = Math.random();
+		 
+		if(chance < 0.3){
+			data[i].type = 0;
+		}else if(chance < 0.6){			
+			data[i].type = 1;
+		}else if(chance < 0.8){			
+			data[i].type = 2;
+		}else if(chance < 0.85){			
+			data[i].type = 3;
+		}else if(chance < 0.95){			
+			data[i].type = 4;
+		}else {			
+			data[i].type = 5;
+		}
+		data[i].typeName = coffeeList[data[i].type];
+		data[i].gender = Math.round(Math.random());
+	}
+    print(data);
+%>

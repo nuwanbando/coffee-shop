@@ -1,9 +1,6 @@
 <html>
 <body>
-<script src="jquery.min.js"></script>
-<script type="text/javascript" src="jquery.flot.min.js"></script>
-<script type="text/javascript" src="jquery.flot.time.min.js"></script>    
-<script type="text/javascript" src="jquery.flot.axislabels.js"></script>
+<script src="../lib/jquery.min.js"></script>
 
 <style type="text/css">
 #flotcontainer {
@@ -41,12 +38,31 @@ function drawCircle(context,x, y, color){
 	
 }
 
-function drawBox(context,x, y, color){
-	context.strokeStyle = "#000000";
-	context.fillStyle = "#000000";
-	context.fillRect(x,y, 5, 5);
+function drawSale(context,price, type, orderTime){
+	var color; 
+	
+	switch(type){
+		case 0:
+			color =  "#af897c";
+			break;
+		case 1:
+			color =  "#80c275";
+			break;
+		case 2:
+			color =  "#f37321";
+			break;
+		case 3:
+			color =  "#c22e13";
+			break;
+		case 4:
+			color =  "#cef8fb";
+			break;
+		case 5:
+			color =  "#00000";
+			break;
+	}
+	drawCircle(context, price*510/10 +10, orderTime*680/300 + 10, color);
 }
-
 
 function updateData(list) {
 	var paper = document.getElementById("tree");
@@ -54,30 +70,19 @@ function updateData(list) {
 
 	for (var i=0;i<list.length;i++){
 		var d = list[i];
-		var sid = d.LocationBySecond.sid;
-		if(sid == "13" || sid =="14" || sid =="97" || sid =="98" || 
-			sid =="47" || sid =="16" || sid =="49" || sid =="88" || sid =="19" || sid =="52"|| 
-			sid =="53" || sid =="54" || sid =="23" || sid =="24" || sid =="57" || sid =="58"|| sid =="59" || sid =="28"){
-			drawCircle(context, d.LocationBySecond.xMean/100, d.LocationBySecond.yMean/100 + 340, "#af897c");
-		}else if(sid =="61" || sid =="62" || sid =="99" || sid =="100" || sid =="63" || sid =="64"|| 
-			sid =="65" || sid =="66" || sid =="67" || sid =="68" || sid =="69" || sid =="38" || sid =="71" || sid =="40" || sid =="73" || sid =="74" || sid =="75" || sid =="44"){
-			drawCircle(context, d.LocationBySecond.xMean/100, d.LocationBySecond.yMean/100 + 340, "#80c275");
-		}else if(sid =="4" || sid =="8" || sid =="10" || sid =="12"){
-			//alert(d + " " + d.LocationBySecond.xMean + " "+ d.LocationBySecond.yMean);
-			drawCircle(context, d.LocationBySecond.xMean/100, d.LocationBySecond.yMean/100 + 340, "#000000");
-		}
+		drawSale(context, d.price, d.type, d.orderTime);
 	}
 }
 
  function redraw() {
-        $.get("http://localhost:9768/MessageBox/messageBox", function(input, status) {
+        $.get("http://localhost:9763/wso2coffeeshop/modules/cofeesalesRealTime.jag", function(input, status) {
           if (input === "_NODATA_") { return; }
           if (input === "_AUTH_FAILURE_") {
               alert("Authentication Failure!");
               window.location.href = "login.jag";
           } else {
               var data = JSON.parse(input);
-              updateData(data.events);
+              updateData(data);
               //$.plot($("#flotcontainer"), dataset, options)
               //setTimeout(update, updateInterval);
           }
@@ -90,9 +95,25 @@ $(document).ready(function () {
     initData();
 });
 </script>
+
+<table>
+<tr><td>
 <canvas id="tree" width="500" height="500">
 Please stop using IE8 and upgrade, already.
 </canvas>
+</td></tr>
+<tr><td>
+<table>
+<tr><td>latte</td><td bgcolor="#af897c" width="10"></td></tr>
+<tr><td>americano</td><td bgcolor="#80c275" width="10"></td></tr>
+<tr><td>cappuccino</td><td bgcolor="#f37321" width="10"></td></tr>
+<tr><td>macchiato</td><td bgcolor="#c22e13" width="10"></td></tr>
+<tr><td>mocha</td><td bgcolor="#cef8fb" width="10"></td></tr>
+<tr><td>espresso</td><td bgcolor="#00000" width="10"></td></tr>
+</td></tr>
+</table>
+
+
 </body>
 
 </body>
