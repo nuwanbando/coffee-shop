@@ -1,0 +1,17 @@
+<%
+
+var hbs = require('/modules/handlebars.js').Handlebars;
+
+var sampleText = 'This is a <b>{{framework}}</b> framework sample developed by <b>{{author}}</b>, this runs completely in the <b>{{where}}</b>';
+
+print('<b>The sample text : </b>' + sampleText + '</br></br>');
+
+var data = {'framework': 'Handlebars', 'author': 'nuwan', 'where': 'server'};
+
+var template = hbs.compile(sampleText);
+
+var html = template(data);
+
+print('<b>Rendered text : </b>' + html);
+
+%>
